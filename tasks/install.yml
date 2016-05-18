@@ -6,6 +6,14 @@
     dest: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
     force: no
 
+- name : Create the solr verion install directory
+  file:
+    path: "{{ solr_versioned_install_path }}"
+    state: directory
+    group: "{{ solr_group }}"
+    user: "{{ solr_user}}"
+
+
 - name: Expand Solr version in intsall path
   unarchive:
     src: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
