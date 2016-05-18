@@ -11,7 +11,7 @@
     path: "{{ solr_versioned_install_path }}"
     state: directory
     group: "{{ solr_group }}"
-    user: "{{ solr_user}}"
+    owner: "{{ solr_user}}"
 
 
 - name: Expand Solr version in intsall path
@@ -20,7 +20,7 @@
     dest: "{{ solr_versioned_install_path }}"
     creates: "{{ solr_versioned_install_path }}/{{ solr_filename }}/dist/{{ solr_filename }}.war"
     group: "{{ solr_group }}"
-    user: "{{ solr_user}}"
+    owner: "{{ solr_user}}"
     copy: no
 
 - name: Create canonical link to installed solr version
@@ -30,4 +30,4 @@
     state: link
     force: yes
     group: "{{ solr_group }}"
-    user: "{{ solr_user}}"
+    owner: "{{ solr_user}}"
