@@ -1,0 +1,14 @@
+---
+# defaults file for ansible_solr5+
+
+solr_create_user: true
+solr_user: solr
+solr_group: "{{ solr_user }}"
+
+solr_version: "5.5.1"
+solr_mirror: "https://archive.apache.org/dist"
+solr_filename: solr-{{ solr_version }}
+solr_download_path: /root
+
+solr_versioned_install_path: /opt/{{ solr_filename }}
+solr_working_path: /opt/solr

@@ -1,0 +1,7 @@
+---
+
+- name: restart solr
+  become: yes
+  service:
+    name: "{{ solr_process_name  }}"
+    state: restarted

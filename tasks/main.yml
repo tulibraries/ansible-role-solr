@@ -1,0 +1,6 @@
+---
+
+- include: user.yml
+  when: solr_create_user
+
+- include: install.yml

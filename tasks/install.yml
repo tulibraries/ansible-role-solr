@@ -1,0 +1,25 @@
+---
+
+- name: Download Solr.
+  get_url:
+    url: "{{ solr_mirror }}/lucene/solr/{{ solr_version }}/{{ solr_filename }}.tgz"
+    dest: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
+    force: no
+
+- name: Expand Solr version in intsall path
+  unarchive:
+    src: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
+    dest: "{{ solr_versioned_install_path }}"
+    creates: "{{ solr_versioned_install_path }}/{{ solr_filename }}/dist/{{ solr_filename }}.war"
+    group: "{{ solr_group }}"
+    user: "{{ solr_user}}"
+    copy: no
+
+- name: Create canonical link to installed solr version
+  file:
+    path: "{{ solr_working_path }}"
+    src: "{{ solr_versioned_install_path }}"
+    state: link
+    force: yes
+    group: "{{ solr_group }}"
+    user: "{{ solr_user}}"
