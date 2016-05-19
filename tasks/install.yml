@@ -6,22 +6,22 @@
     dest: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
     force: no
 
-- name : Create the solr verion install directory
-  file:
-    path: "{{ solr_versioned_install_path }}"
-    state: directory
-    group: "{{ solr_group }}"
-    owner: "{{ solr_user}}"
-
-
-- name: Expand Solr version in intsall path
+- name: Expand Solr version in install path
   unarchive:
     src: "{{ solr_download_path }}/{{ solr_filename }}.tgz"
-    dest: "{{ solr_versioned_install_path }}"
+    dest: "{{ solr_install_base_path }}"
     creates: "{{ solr_versioned_install_path }}/{{ solr_filename }}/dist/{{ solr_filename }}.war"
     group: "{{ solr_group }}"
     owner: "{{ solr_user}}"
+    mode: u+rwX,go+rX,go-w
     copy: no
+  notify: restart solr
+
+- name: Ensure the correct permissions are set for installed solr version
+  file:
+    path: "{{ solr_versioned_install_path }}"
+    mode: u+rwX,go+rX,go-w
+  notify: restart solr
 
 - name: Create canonical link to installed solr version
   file:
@@ -31,3 +31,36 @@
     force: yes
     group: "{{ solr_group }}"
     owner: "{{ solr_user}}"
+    mode:
+  notify: restart solr
+
+- name: Ensure solr home directories for data and logs exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    mode: 0750
+  with_items:
+    - "{{ solr_home_path }}"
+    - "{{ solr_logs_path }}"
+  notify: restart solr
+
+- name: Ensure the solr.xml and log4j files are present
+  template:
+    src: "{{ item.filename }}.j2"
+    dest: "{{ item.destination }}/{{ item.filename }}"
+    owner: "{{ solr_user }}"
+    group: "{{ solr_group }}"
+    mode: 0640
+  with_items:
+    - filename: solr.xml
+      destination: "{{ solr_home_path }}"
+    - filename: log4j.properties
+      destination: "{{ solr_base_path }}"
+  notify: restart solr
+
+- name: Ensure lsof is installed
+  package:
+    name: lsof
+    state: present

@@ -1,5 +1,5 @@
 ---
-# defaults file for ansible_solr5+
+# defaults file for ansible-role-solr
 
 solr_create_user: true
 solr_user: solr
@@ -12,8 +12,9 @@ solr_mirror: "https://archive.apache.org/dist"
 solr_filename: solr-{{ solr_version }}
 solr_download_path: /root
 
-solr_versioned_install_path: /opt/{{ solr_filename }}
-solr_working_path: /opt/solr
+solr_install_base_path: /opt
+solr_versioned_install_path: "{{ solr_install_base_path}}/{{ solr_filename }}"
+solr_working_path: "{{ solr_install_base_path}}/solr"
 
 
 solr_base_path: /var/solr
@@ -26,3 +27,5 @@ solr_log4j_props: "{{ solr_base_path }}/log4j.properties"
 solr_heap_size: 1024M
 
 solr_port: 8983
+
+solr_use_systemd: false

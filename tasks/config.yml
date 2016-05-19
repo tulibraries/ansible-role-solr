@@ -6,6 +6,18 @@
     dest: /etc/init.d/{{ solr_service_name }}
     mode: 0744
     owner: root
+  notify: restart solr
+  when: not solr_use_systemd
+
+- name: Add systemd unit
+  template:
+    src: systemd-solr-unit.j2
+    dest: /etc/systemd/system/solr.service
+    mode: 0755
+  when: solr_use_systemd
+  notify:
+    - systemd reload
+    - restart solr
 
 
 - name: Install solr defaults script
@@ -14,3 +26,4 @@
     dest: /etc/default/{{ solr_service_name }}.in.sh
     mode: 0644
     owner: root
+  notify: restart solr

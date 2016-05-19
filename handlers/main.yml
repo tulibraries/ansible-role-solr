@@ -1,7 +1,10 @@
 ---
 
 - name: restart solr
-  become: yes
   service:
-    name: "{{ solr_process_name  }}"
+    name: "{{ solr_service_name  }}"
     state: restarted
+    enabled: yes
+
+- name: systemd reload
+  command: systemctl daemon-reload
