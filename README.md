@@ -8,7 +8,7 @@ but allow for more overrides, and customization, and idempotency.
 Requirements
 ------------
 
-Requires Java.
+Requires Java to be installed. 
 
 Role Variables
 --------------
@@ -45,9 +45,12 @@ solr_port: 8983
 solr_use_systemd: false
 ```
 
-Dependencies
+Installation
 ------------
 
+`ansible-galaxy install tulibraries.solr`
+
+or add it to you [required roles file](https://galaxy.ansible.com/intro#download-advanced).
 
 Example Playbook
 ----------------
@@ -56,7 +59,15 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - ansible-role-solr
+         - tulibraries.solr
+
+Local Testing
+-------------
+
+To test locally before using in your playbook, a minimal vagrant setup is included. Defaults to a centos 7 box and uses systemd. 
+
+To use, change directory into `tests/vagrant` and run vagrant up.  
+ 
 
 License
 -------
