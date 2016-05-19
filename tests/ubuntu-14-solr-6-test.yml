@@ -15,5 +15,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - { role: role_under_test, tomcat_max_memory: 2048m}
+    - { role: role_under_test, solr_version: 6.0.0 }
 

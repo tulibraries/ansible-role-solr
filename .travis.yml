@@ -6,12 +6,22 @@ env:
     version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    playbook: centos-7-test.yml
+    playbook: centos-7-solr-5-test.yml
+  - distribution: centos
+    version: 7
+    init: /usr/lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: centos-7-solr-6-test.yml
   - distribution: ubuntu
     version: 14.04
     init: /sbin/init
     run_opts: ""
-    playbook: test.yml
+    playbook: ubuntu-14-solr-5-test.yml
+  - distribution: ubuntu
+    version: 14.04
+    init: /sbin/init
+    run_opts: ""
+    playbook: ubuntu-14-solr-6-test.yml
 
 services:
   - docker
