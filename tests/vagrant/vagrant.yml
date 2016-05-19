@@ -1,0 +1,13 @@
+---
+
+- hosts: vagrant
+  remote_user: vagrant
+  become: yes
+  pre_tasks:
+    - name: install java 8
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+  roles:
+    - {role: ansible-role-solr, solr_use_systemd: true}
+

@@ -3,5 +3,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - { role: role_under_test, tomcat_max_memory: 2048m}
+    - { role: ansible-role-solr }
 
