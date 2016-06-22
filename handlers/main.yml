@@ -5,6 +5,8 @@
     name: "{{ solr_service_name  }}"
     state: restarted
     enabled: yes
+  when: solr_configure_service
 
 - name: systemd reload
   command: systemctl daemon-reload
+  when: solr_configure_service

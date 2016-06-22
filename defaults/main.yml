@@ -28,4 +28,5 @@ solr_heap_size: 1024M
 
 solr_port: 8983
 
+solr_configure_service: true
 solr_use_systemd: false
