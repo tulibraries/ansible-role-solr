@@ -41,6 +41,9 @@ solr_heap_size: 1024M
 
 solr_port: 8983
 
+# set to false to not configure solr as a system service
+solr_configure_service: true
+
 # Set to true to use systemd unit instead of a init.d script 
 solr_use_systemd: false
 ```

@@ -6,3 +6,4 @@
 - include: install.yml
 
 - include: config.yml
+  when: solr_configure_service
