@@ -3,11 +3,11 @@ galaxy_info:
   description: >
     Installs Solr 5 and above as a system process using the embedded jetty. Follows the methods outlined in the standard
     install-solr-service.sh script distributed with solr, but allow for more overrides, and customization, and idempotency.
-  
+
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
-  
+
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -16,7 +16,7 @@ galaxy_info:
   # - Apache
   # - CC-BY
   license: license (GPLv2, CC-BY, etc)
-  
+
   min_ansible_version: 1.2
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
@@ -24,9 +24,9 @@ galaxy_info:
   # Galaxy will use this branch. During import Galaxy will access files on
   # this branch. If travis integration is cofigured, only notification for this
   # branch will be accepted. Otherwise, in all cases, the repo's default branch
-  # (usually master) will be used.
+  # (usually main) will be used.
   #github_branch:
-  
+
   #
   # Below are all platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
@@ -113,7 +113,7 @@ galaxy_info:
   #  - squeeze
   #  - stretch
   #  - wheezy
-  
+
   galaxy_tags:
     - solr
     - lucene
